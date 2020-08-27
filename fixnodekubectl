@@ -1,0 +1,8 @@
+fixd
+  kubectl *
+  The connection to the server localhost:8080 was refused - did you specify the right host or port?
+
+I had this problem because there was no admin.conf file and I did not have KUBECONFIG=/root/admin.conf set. the admin.conf file is created in /etc/kubernetes by the "kubeadmin init" command and you need to copy it to all your minion nodes. kubeadmin does not do this for you.
+
+
+cp /etc/kubernetes/admin.conf from the master to the nodes and run "export KUBECONFIG=/etc/kubernetes/admin.conf" on nodes
